@@ -1,6 +1,10 @@
 # 《Python计算》实验
 
-- [实验一](https://github.com/ZKLlab/python-computing-experiments/tree/ex1)
+> 此Repo存放2019-2020春《Python计算》课程第14组实验代码
+
+## 目录
+
+- [实验一](https://github.com/ZKLlab/python-computing-experiments/tree/ex1) (2020-04-15)
 
 ## 许可证
 

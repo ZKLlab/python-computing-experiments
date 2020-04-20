@@ -4,8 +4,8 @@ if __name__ == '__main__':
 
     t1 = time.time()
 
-    with open('words.txt') as fs:
-        word_list = fs.readlines()
+    with open('words.txt') as fp:
+        word_list = fp.readlines()
 
     word_list = list(map(lambda w: w.strip(), word_list))
     word_set = set(word_list)

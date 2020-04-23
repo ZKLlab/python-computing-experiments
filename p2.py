@@ -4,10 +4,10 @@ if __name__ == '__main__':
 
     while True:
         try:
-            date_raw = input('请输入时间(HH:MM:SS): ')
-            date = datetime.strptime(date_raw, '%H:%M:%S')
-            date += timedelta(seconds=1)
-            print(date.strftime('%H:%M:%S'))
+            time_raw = input('请输入时间(HH:MM:SS): ')
+            time = datetime.strptime(time_raw, '%H:%M:%S')
+            time += timedelta(seconds=1)
+            print(time.strftime('%H:%M:%S'))
         except ValueError:
             print('格式有误或时间不存在！')
 

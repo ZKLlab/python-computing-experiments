@@ -34,7 +34,7 @@ if __name__ == '__main__':
     max_len = 1
     result = 'a'
     for word in words_list:
-        if len(word) >= max_len:
+        if len(word) > max_len:
             sub_result = find(word)
             if sub_result is not None:
                 result = sub_result

@@ -4,9 +4,13 @@
 
 ## 目录
 
-- [实验一](https://github.com/ZKLlab/python-computing-experiments/tree/ex1) (2020-04-15)
+- [实验一](https://github.com/ZKLlab/python-computing-experiments/tree/ex1) (2020-04-08)
 
   ![last commit (ex1)](https://img.shields.io/github/last-commit/ZKLlab/python-computing-experiments/ex1?style=flat-square)
+  
+- [实验二](https://github.com/ZKLlab/python-computing-experiments/tree/ex2) (2020-04-22)
+
+  ![last commit (ex2)](https://img.shields.io/github/last-commit/ZKLlab/python-computing-experiments/ex2?style=flat-square)
 
 ## 许可证
 

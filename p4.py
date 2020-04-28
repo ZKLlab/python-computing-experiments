@@ -20,16 +20,12 @@ def find(w: str):
 if __name__ == '__main__':
     # 制作词表
     with open('words.txt') as fp:
-        words_list = [x.strip() for x in fp]
-    words_list = [x for x in words_list if 'a' in x or 'i' in x]
-    words_list.append('a')
-    words_list.append('i')
-    words_list.sort()
+        words_list = [x.strip() for x in fp if 'a' in x or 'i' in x]
 
     start = time.time()
 
     words_set = set(words_list)  # 全部词集
-    succeed_words_set = set()  # 成功词集
+    succeed_words_set = {'a', 'i'}  # 成功词集
     failed_words_set = set()  # 失败词集
     max_len = 1
     result = 'a'

@@ -37,7 +37,7 @@ if __name__ == '__main__':
     # 用户输入
     while True:
         try:
-            _m, _n = [int(x) for x in input().split()]
+            _m, _n = [int(x) for x in input('请输入M和N的值(如 1000 30): ').split()]
             print(get_p(_m, _n))
         except ValueError:
             break

@@ -1,3 +1,4 @@
+# import math
 import random
 
 import matplotlib.pyplot as plt
@@ -30,6 +31,7 @@ if __name__ == '__main__':
                     _i + 1,
                     sum([get_p(_m, _i + 1) for _ in range(5)]) / 5,  # 五次取平均
                     1 - perm(365, _i, exact=True) / 365 ** _i,  # 1-P(365,N)/365^N
+                    # 1 - 1 / math.exp(_i ** 2 / (365 * 2)),  # 1-1/exp(N^2/(365*2))
                 )
             print('\r', end='')
             plt.plot(n_p[:, 0], n_p[:, 1])

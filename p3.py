@@ -20,19 +20,22 @@ def get_p(m: int, n: int):
 
 
 if __name__ == '__main__':
-    # 每班人数 1 ~ 100 进行统计分析
-    n_p = np.zeros((100, 3))
-    for _i in range(100):
-        print('\r{:.0f}%'.format((_i / 10) ** 2), end='')
-        n_p[_i, :] = (
-            _i + 1,
-            sum([get_p(1000, _i + 1) for _ in range(5)]) / 5,
-            1 - perm(365, _i) / 365 ** _i,
-        )
-    print('\r', end='')
-    plt.plot(n_p[:, 0], n_p[:, 1])
-    plt.plot(n_p[:, 0], n_p[:, 2])
-    plt.show()
+    if input('跳过统计分析？(y/N) ').lower() != 'y':
+        for _j, _m in enumerate((1000, 2000, 5000, 10000)):
+            # 每班人数 1 ~ 100 进行统计分析
+            n_p = np.zeros((100, 3))
+            for _i in range(100):
+                print('\r{:.0f}% ({}/4)'.format((_i / 10) ** 2, _j + 1), end='')  # 进度
+                n_p[_i, :] = (
+                    _i + 1,
+                    sum([get_p(_m, _i + 1) for _ in range(5)]) / 5,  # 五次取平均
+                    1 - perm(365, _i, exact=True) / 365 ** _i,  # 1-P(365,N)/365^N
+                )
+            print('\r', end='')
+            plt.plot(n_p[:, 0], n_p[:, 1])
+            plt.plot(n_p[:, 0], n_p[:, 2])
+            plt.savefig('p3_figures/m={}.png'.format(_m))
+            plt.show()
 
     # 用户输入
     while True:

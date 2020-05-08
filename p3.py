@@ -9,14 +9,14 @@ from scipy.special import perm
 def get_p(m: int, n: int):
     q = 0
     for i in range(m):
-        s = set()
+        s = [False] * 365
         for j in range(n):
             day = random.randint(1, 365)
-            if day in s:
+            if s[day - 1]:
                 q += 1
                 break
             else:
-                s.add(day)
+                s[day - 1] = True
     return q / m
 
 

@@ -18,12 +18,30 @@ def find(w: str):
     return w
 
 
+# 打印输出
+def print_seq(w: str, *, root: bool = True):
+    global words_set
+    arrow = ' → '
+    if len(w) > 1:
+        for i in range(len(w)):
+            nw = w[:i] + w[i + 1:]
+            if nw in {'a', 'i'}:
+                print(nw, end=arrow)
+                break
+            elif nw in words_set and print_seq(nw, root=False) is not None:
+                break
+        else:
+            return None
+    print(w, end=' ({})\n'.format(len(w)) if root else arrow)
+    return w
+
+
 if __name__ == '__main__':
+    start = time.time()  # 记录开始时间
+
     # 制作词表
     with open('words.txt') as fp:
         words_list = [x.strip() for x in fp if 'a' in x or 'i' in x]  # 读取文件并初筛，不含'a'和'i'的一定不是可缩减单词
-
-    start = time.time()  # 记录开始时间
 
     words_set = set(words_list)  # 全部词集
     succeed_words_set = {'a', 'i'}  # 成功词集，可缩减单词的子单词一定是可缩减单词
@@ -38,5 +56,6 @@ if __name__ == '__main__':
 
     end = time.time()  # 记录结束时间
 
-    print(result)
+    print_seq(result)  # 打印输出序列
+    # print(result)
     print(end - start, 's')

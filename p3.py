@@ -1,9 +1,8 @@
-# import math
+import math
 import random
 
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy.special import perm
 
 
 def get_p(m: int, n: int):
@@ -21,23 +20,31 @@ def get_p(m: int, n: int):
 
 
 if __name__ == '__main__':
+    f365 = math.factorial(365)
     if input('跳过统计分析？(y/N) ').lower() != 'y':
-        for _j, _m in enumerate((1000, 2000, 5000, 10000)):
-            # 每班人数 1 ~ 100 进行统计分析
-            n_p = np.zeros((100, 3))
-            for _i in range(100):
-                print('\r{:.0f}% ({}/4)'.format((_i / 10) ** 2, _j + 1), end='')  # 进度
-                n_p[_i, :] = (
-                    _i + 1,
-                    sum([get_p(_m, _i + 1) for _ in range(5)]) / 5,  # 五次取平均
-                    1 - perm(365, _i, exact=True) / 365 ** _i,  # 1-P(365,N)/365^N
-                    # 1 - 1 / math.exp(_i ** 2 / (365 * 2)),  # 1-1/exp(N^2/(365*2))
-                )
-            print('\r', end='')
-            plt.plot(n_p[:, 0], n_p[:, 1])
-            plt.plot(n_p[:, 0], n_p[:, 2])
-            plt.savefig('p3_figures/m={}.png'.format(_m))
-            plt.show()
+        # 1000个班级，每班人数 1 ~ 365 进行统计分析
+        _m = 1000
+        n_p = np.zeros((365, 3))
+        for _i in range(365):
+            print('\r{:.0f}%'.format((_i / 36.5) ** 2), end='')  # 进度
+            # N = _i + 1
+            n_p[_i, :] = (
+                _i + 1,
+                sum([get_p(_m, _i + 1) for _ in range(3)]) / 3,  # 三次取平均
+                1 - f365 / (365 ** (_i + 1) * math.factorial(364 - _i)),  # 理论值
+            )
+        print('\r', end='')
+        plt.figure(figsize=(12, 4))
+        plt.plot((1, 365), (0.5, 0.5), c='#9E9E9E', linestyle=':')
+        plt.plot((23, 23), (0, 1), c='#9E9E9E', linestyle=':')
+        plt.plot(n_p[:, 0], n_p[:, 2], c='#FF9800', label='Calculated result')
+        plt.scatter(n_p[:, 0], n_p[:, 1], c='#3F51B5', marker='x', label='Experimental result')
+        plt.annotate('(23, 0.5)', xy=(23, 0.5), xytext=(25, 0.44))
+        plt.xlabel('N')
+        plt.ylabel('P')
+        plt.legend()
+        plt.savefig('p3_figures/m={}.png'.format(_m))
+        plt.show()
 
     # 用户输入
     while True:

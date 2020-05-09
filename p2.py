@@ -1,28 +1,33 @@
 from swampy.TurtleWorld import *
 
 
-def koch(t, n):
-    if n < 3:
-        t.fd(n)
-        return
-    m = n / 3
-    koch(t, m)
-    t.lt(60)
-    koch(t, m)
-    t.rt(120)
-    koch(t, m)
-    koch(t, m)
-    t.lt(120)
-    koch(t, m)
-    t.rt(60)
-    koch(t, m)
+def set_color(t: Turtle):
+    if t.get_y() > 106:
+        t.set_pen_color('#F44336')
+    elif t.get_y() > 53:
+        t.set_pen_color('#FF9800')
+    elif t.get_y() > 0:
+        t.set_pen_color('#FFEB3B')
+    elif t.get_y() > -53:
+        t.set_pen_color('#4CAF50')
+    elif t.get_y() > -106:
+        t.set_pen_color('#2196F3')
+    else:
+        t.set_pen_color('#673AB7')
 
 
-def snowflake(t, n):
-    times = 5
-    for i in range(times):
-        koch(t, n)
-        t.rt(360 / times)
+def koch(t: Turtle, order, size):
+    if order == 0:
+        set_color(t)
+        t.fd(size)
+    else:
+        koch(t, order - 1, size / 3)
+        t.rt(85)
+        koch(t, order - 1, size / 3)
+        t.lt(170)
+        koch(t, order - 1, size / 3)
+        t.rt(85)
+        koch(t, order - 1, size / 3)
 
 
 if __name__ == '__main__':
@@ -30,10 +35,16 @@ if __name__ == '__main__':
     bob = Turtle()
     bob.delay = 0
 
-    bob.x = -90
-    bob.y = 130
+    bob.x = 0
+    bob.y = 160
     bob.redraw()
+    bob.rt(36)
+    for i in range(5):
+        koch(bob, 5, 1000)
+        bob.rt(72)
 
-    snowflake(bob, 80)
+    bob.y = -10
+    bob.heading = 90
+    bob.redraw()
 
     world.mainloop()

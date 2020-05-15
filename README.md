@@ -9,7 +9,7 @@
 1. 函数和数据结构复习
    1. 编写Ackermann函数的递归实现Ack(m, n)；
 
-      ![Ackermann函数](https://render.githubusercontent.com/render/math?math=A%5Cleft%28m%2Cn%5Cright%29%3D%5Cleft%5C%7B%5Cbegin%7Barray%7D%7Bll%7Dn%2B1%26if%5C%3Bm%3D0%5C%5CA%5Cleft%28m-1%2C1%5Cright%29%26if%5C%3Bm%5Cgt0%5C%3Band%5C%3Bn%3D0%5C%5CA%5Cleft%28m-1%2CA%5Cleft%28m%2Cn-1%5Cright%29%5Cright%29%26if%5C%3Bm%5Cgt0%5C%3Band%5C%3Bn%5Cgt0.%5Cend%7Barray%7D%5Cright.)
+      ![Ackermann函数](https://render.githubusercontent.com/render/math?math=A%5Cleft%28m%2Cn%5Cright%29%3D%5Cleft%5C%7B%5Cbegin%7Barray%7D%7Bll%7Dn%2B1%26%5Crm%7Bif%7D%5C%3Bm%3D0%5C%5CA%5Cleft%28m-1%2C1%5Cright%29%26%5Crm%7Bif%7D%5C%3Bm%5Cgt0%5C%3B%5Crm%7Band%7D%5C%3Bn%3D0%5C%5CA%5Cleft%28m-1%2CA%5Cleft%28m%2Cn-1%5Cright%29%5Cright%29%26%5Crm%7Bif%7D%5C%3Bm%5Cgt0%5C%3B%5Crm%7Band%7D%5C%3Bn%5Cgt0.%5Cend%7Barray%7D%5Cright.)
 
       测试Ack(3, 4)的值，阅读[https://en.wikipedia.org/wiki/Ackermann_function](https://en.wikipedia.org/wiki/Ackermann_function)，分析m和n取值对函数值计算的影响，深入理解递归；
 

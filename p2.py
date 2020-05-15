@@ -11,12 +11,12 @@ class Time:
     def __add__(self, other):
         ts = int(self) + int(other)
         tsa = abs(ts)
-        return Time(ts // 3600, (tsa // 60) % 60, tsa % 60)
+        return self.__class__(ts // 3600, (tsa // 60) % 60, tsa % 60)
 
     def __sub__(self, other):
         ts = int(self) - int(other)
         tsa = abs(ts)
-        return Time(ts // 3600, (tsa // 60) % 60, tsa % 60)
+        return self.__class__(ts // 3600, (tsa // 60) % 60, tsa % 60)
 
     def __int__(self):
         h, m, s = self._hour, self._minute, self._second

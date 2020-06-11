@@ -6,9 +6,7 @@ from typing import TextIO
 from googletrans import Translator
 from nltk.tokenize import sent_tokenize
 
-translator = Translator(service_urls=[
-    'translate.google.cn',
-])
+translator = Translator(service_urls=['translate.google.cn'])
 
 
 class Markov:
@@ -26,7 +24,8 @@ class Markov:
     def __get_first_prefix(self):
         return list(random.choice(self.start_prefixes))
 
-    def __get_next_word(self, prefix: str):
+    # def __get_next_word(self, prefix: str):
+    def __get_next_word(self, prefix: tuple):
         seq = self.chain[prefix]
         return random.choice(seq)
 
@@ -49,7 +48,8 @@ class Markov:
                             break
                         real_start = word
                     if len(prefix) == n:
-                        key = ' '.join(prefix)
+                        # key = ' '.join(prefix)
+                        key = tuple(prefix)
                         if prefix[0] == real_start:
                             self.start_prefixes_set.add(tuple(prefix))
                         if key in self.chain:
@@ -72,7 +72,8 @@ class Markov:
             appeared_first_prefix = set()
             while True:
                 try:
-                    prefix = ' '.join(words[-self.n:])
+                    # prefix = ' '.join(words[-self.n:])
+                    prefix = tuple(words[-self.n:])
                     word = self.__get_next_word(prefix)
                     words.append(word)
                     pos += 1
@@ -114,12 +115,12 @@ def generate(book: str, m: int, n: int):
 
 
 def main():
-    generate('emma', 6, 1)
-    generate('emma', 6, 2)
-    generate('emma', 6, 3)
-    generate('whitefang', 6, 1)
-    generate('whitefang', 6, 2)
-    generate('whitefang', 6, 3)
+    generate('emma', 10, 1)
+    generate('emma', 10, 2)
+    generate('emma', 10, 3)
+    generate('whitefang', 10, 1)
+    generate('whitefang', 10, 2)
+    generate('whitefang', 10, 3)
     while i := input('输入文章(emma|whitefang) 句数m 阶数n: '):
         try:
             book, m, n = i.split()

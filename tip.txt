@@ -1,0 +1,7 @@
+----Order List----
+Item		Price	Number
+川辣嫩牛五方	18.0	1	
+波纹霸王薯条（中）	12.0	1	
+红豆派	7.0	2	
+
+Total：￥44.0
